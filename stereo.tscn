@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4c2ugi0b4bgv"]
+
+[ext_resource type="AudioStream" uid="uid://bin2xch84y2n5" path="res://1-02. Stereo Madness.mp3" id="1_rgwf8"]
+[ext_resource type="Script" path="res://stereo.gd" id="2_ycgco"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_rgwf8")
+autoplay = true
+script = ExtResource("2_ycgco")
