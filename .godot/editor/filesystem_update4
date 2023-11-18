@@ -1,2 +1,6 @@
+res://level.tscn
+res://wall.tscn
 res://stereo.tscn
 res://stereo.gd
+res://test.tscn
+res://player.gd

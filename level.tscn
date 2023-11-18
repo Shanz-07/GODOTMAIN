@@ -9,10 +9,10 @@
 [ext_resource type="Script" path="res://Attm.gd" id="7_ggnfp"]
 [ext_resource type="PackedScene" uid="uid://c4c2ugi0b4bgv" path="res://stereo.tscn" id="8_jji32"]
 
-[sub_resource type="Gradient" id="Gradient_ivuet"]
+[sub_resource type="Gradient" id="Gradient_5jdwx"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nn3ch"]
-gradient = SubResource("Gradient_ivuet")
+gradient = SubResource("Gradient_5jdwx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y6rh3"]
 emission_shape = 2
@@ -49,12 +49,12 @@ modulate = Color(0, 0.0509804, 1, 1)
 position = Vector2(-19, 200)
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(103, 131)
+position = Vector2(100, 139)
 script = ExtResource("3_vv47w")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="player"]
 position = Vector2(-301.3, -129.3)
-polygon = PackedVector2Array(249.3, 112.3, 241.3, 112.3, 241.3, 118.3, 240.3, 182.3, 241.3, 190.3, 314.3, 188.3, 314.3, 180.3, 314.3, 171.3, 314.3, 149.3, 314.3, 139.3, 314.3, 133.3, 313.3, 114.3, 311.3, 112.3, 311.3, 111.3, 274.3, 111.3)
+polygon = PackedVector2Array(249.3, 112.3, 241.3, 112.3, 241.3, 118.3, 240.3, 182.3, 242.3, 184.3, 275.3, 184.3, 313.3, 184.3, 314.3, 180.3, 314.3, 171.3, 314.3, 149.3, 314.3, 139.3, 314.3, 133.3, 313.3, 114.3, 311.3, 112.3, 311.3, 111.3, 274.3, 111.3)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player/CollisionPolygon2D2"]
 position = Vector2(298.3, 137.3)
@@ -63,8 +63,8 @@ update_rotation = false
 update_scale = false
 
 [node name="Icon2" type="Sprite2D" parent="player"]
-position = Vector2(-23.9, 21.6)
-scale = Vector2(0.603361, 0.638017)
+position = Vector2(-23.9, 19)
+scale = Vector2(0.603361, 0.595041)
 texture = ExtResource("3_bhqdp")
 region_enabled = true
 region_rect = Rect2(256.89, 156.003, 119.052, 121.369)
@@ -353,7 +353,7 @@ rotation = 1.58476
 polygon = PackedVector2Array(2795, -192, 2818.88, 186.661, 2960, 193, 2948, 190, 2950, 101, 2962, 112, 2948, -43, 2950, -132, 2956, -196, 2873, -194)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(100, 139)
+position = Vector2(97, 147)
 offset = Vector2(0, -200)
 zoom = Vector2(1.2, 1.2)
 limit_top = -300
@@ -449,9 +449,6 @@ text = "ATTEMPT 1"
 [node name="TextureRect" type="TextureRect" parent="Attm/ATTEMPTS/VBoxContainer"]
 layout_mode = 2
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("8_jji32")]
-pitch_scale = 1.1
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(649.8, 210.031)
 rotation = 1.5708
@@ -459,6 +456,9 @@ scale = Vector2(1.36362, 1500)
 energy = 2.39
 texture = SubResource("GradientTexture2D_c4ivf")
 
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("8_jji32")]
+
+[connection signal="rotate" from="player" to="player" method="_on_rotate"]
 [connection signal="body_entered" from="Areas/area" to="player" method="_on_area_body_entered"]
 [connection signal="body_entered" from="Areas/area" to="AudioStreamPlayer" method="_on_area_body_entered"]
 [connection signal="body_entered" from="Areas/area2" to="player" method="_on_area_body_entered"]
