@@ -6,6 +6,7 @@
 size = Vector2(63988, 4083)
 
 [node name="main wall" type="StaticBody2D"]
+modulate = Color(0, 0.0509804, 1, 1)
 
 [node name="wall" type="Sprite2D" parent="."]
 texture_repeat = 2

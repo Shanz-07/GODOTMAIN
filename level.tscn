@@ -1,18 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdiv5k5vx1ehb"]
+[gd_scene load_steps=17 format=3 uid="uid://cdiv5k5vx1ehb"]
 
 [ext_resource type="Texture2D" uid="uid://c452c7o2h1otc" path="res://icon.png" id="3_bhqdp"]
 [ext_resource type="Script" path="res://player.gd" id="3_vv47w"]
-[ext_resource type="PackedScene" uid="uid://dae3dqxabo8v1" path="res://wall.tscn" id="3_w8esq"]
 [ext_resource type="Texture2D" uid="uid://b4sjbbgubakid" path="res://bg box.png" id="6_05c3q"]
 [ext_resource type="Texture2D" uid="uid://bpnqen1vkrir0" path="res://autodraw 11_5_2023.png" id="6_dqmyu"]
 [ext_resource type="Texture2D" uid="uid://dyhyr4ywahfvo" path="res://autodraw 11_6_2023-modified.png" id="6_sqlu6"]
 [ext_resource type="Script" path="res://Attm.gd" id="7_ggnfp"]
+[ext_resource type="Texture2D" uid="uid://b7ixrl4x7jnb3" path="res://3e57d7f8a24e60f5786c9f97f3dcaf8b.jpg" id="8_0j141"]
 [ext_resource type="PackedScene" uid="uid://c4c2ugi0b4bgv" path="res://stereo.tscn" id="8_jji32"]
 
 [sub_resource type="Gradient" id="Gradient_5jdwx"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nn3ch"]
 gradient = SubResource("Gradient_5jdwx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bame0"]
+size = Vector2(7918, 236)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y6rh3"]
 emission_shape = 2
@@ -22,7 +25,7 @@ gravity = Vector3(-90, -9.8, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.0
-scale_max = 16.53
+scale_max = 12.0
 
 [sub_resource type="Gradient" id="Gradient_me6e3"]
 
@@ -44,9 +47,18 @@ position = Vector2(16010, -7762)
 scale = Vector2(57098.6, 15958.7)
 texture = SubResource("GradientTexture2D_nn3ch")
 
-[node name="the wall" parent="." instance=ExtResource("3_w8esq")]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 modulate = Color(0, 0.0509804, 1, 1)
-position = Vector2(-19, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3956, 316)
+shape = SubResource("RectangleShape2D_bame0")
+
+[node name="walll" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(3746.5, 804)
+scale = Vector2(9.63125, 1.5175)
+texture = ExtResource("8_0j141")
 
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(100, 139)
@@ -73,6 +85,10 @@ region_rect = Rect2(256.89, 156.003, 119.052, 121.369)
 position = Vector2(-67, 55)
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_y6rh3")
+lifetime = 0.5
+preprocess = 11.75
+explosiveness = 0.16
+randomness = 1.0
 
 [node name="Areas" type="Node2D" parent="."]
 position = Vector2(1512.1, -0.200005)
@@ -269,7 +285,7 @@ position = Vector2(-1512.1, 0.200005)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/static wall and obst"]
 position = Vector2(759.4, 17.5)
-polygon = PackedVector2Array(2874.3, -9.60001, 2873.3, 51.4, 2873.3, 115.4, 2876.3, 151.4, 2870.3, 179.4, 2958, 182, 2961, 117, 2961, 116, 2957, -43, 2863, -43, 2866.3, -31.6)
+polygon = PackedVector2Array(2875.6, -1.5, 2878.6, 53.5, 2876.6, 115.5, 2876.3, 151.4, 2870.3, 179.4, 2958, 182, 2961, 117, 2961, 116, 2957, -43, 2876.6, -39.5, 2876.6, -25.5)
 
 [node name="wall and obstacle" type="Sprite2D" parent="Areas/static wall and obst"]
 modulate = Color(0, 0, 0, 1)
@@ -284,7 +300,7 @@ region_rect = Rect2(0, 0, 296.066, 633.095)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/static wall and obst/Area2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(761.4, 4.5)
-polygon = PackedVector2Array(2873.3, -21.6, 2870.6, 81.5, 2870.6, 190.5, 2960, 193, 2959, 192, 2962, 112, 2962, 112, 2961, -30)
+polygon = PackedVector2Array(2873.3, -21.6, 2878.6, 81.5, 2875.6, 183.5, 2875.6, 190.5, 2960, 193, 2959, 192, 2962, 112, 2962, 112, 2961, -30)
 
 [node name="static wall and obst2" type="StaticBody2D" parent="Areas"]
 position = Vector2(-1282.1, 0.200005)
@@ -450,15 +466,14 @@ text = "ATTEMPT 1"
 layout_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(649.8, 210.031)
+position = Vector2(647, 191.33)
 rotation = 1.5708
-scale = Vector2(1.36362, 1500)
-energy = 2.39
+scale = Vector2(0.207414, 1500)
+energy = 2.97
 texture = SubResource("GradientTexture2D_c4ivf")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("8_jji32")]
 
-[connection signal="rotate" from="player" to="player" method="_on_rotate"]
 [connection signal="body_entered" from="Areas/area" to="player" method="_on_area_body_entered"]
 [connection signal="body_entered" from="Areas/area" to="AudioStreamPlayer" method="_on_area_body_entered"]
 [connection signal="body_entered" from="Areas/area2" to="player" method="_on_area_body_entered"]

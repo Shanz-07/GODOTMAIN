@@ -27,10 +27,6 @@ position = Vector2(16010, -7762)
 scale = Vector2(57098.6, 15958.7)
 texture = SubResource("GradientTexture2D_x32c3")
 
-[node name="the wall" parent="." instance=ExtResource("3_uafsc")]
-modulate = Color(0, 0.0509804, 1, 1)
-position = Vector2(-19, 200)
-
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(103, 131)
 script = ExtResource("1_pp4sl")
@@ -64,4 +60,4 @@ zoom = Vector2(1.2, 1.2)
 limit_top = -300
 position_smoothing_enabled = true
 
-[connection signal="rotate" from="player" to="player" method="_on_rotate"]
+[node name="main wall" parent="." instance=ExtResource("3_uafsc")]
